@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>655255217284-10rljagl1tq36mggs3mnkia8u1ebklc0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.655255217284-10rljagl1tq36mggs3mnkia8u1ebklc0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAVxkb_e_V4A1d7ozyi5QyDMIM7cZT8vkk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>655255217284</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.flutter.epitech.instagram</string>
+	<key>PROJECT_ID</key>
+	<string>instagram-58710</string>
+	<key>STORAGE_BUCKET</key>
+	<string>instagram-58710.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:655255217284:ios:af74de0b9fdfd1e0c44ed1</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+    </dict>
+</dict>
+</plist>

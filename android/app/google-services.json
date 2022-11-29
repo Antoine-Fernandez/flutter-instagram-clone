@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "655255217284",
+    "project_id": "instagram-58710",
+    "storage_bucket": "instagram-58710.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655255217284:android:0e10341af73cea97c44ed1",
+        "android_client_info": {
+          "package_name": "com.flutter.epitech.instagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655255217284-3heid1m487c4mad15negchcabqckk8kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH-B4aQiaRok4xT1mfn_vGHXCfoo3UdT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655255217284-3heid1m487c4mad15negchcabqckk8kh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "655255217284-10rljagl1tq36mggs3mnkia8u1ebklc0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutter.epitech.instagram"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
