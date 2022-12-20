@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>655255217284-10rljagl1tq36mggs3mnkia8u1ebklc0.apps.googleusercontent.com</string>
+	<string>819053432548-po3dnicfafnrtber41s2db64qoe4d0ci.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.655255217284-10rljagl1tq36mggs3mnkia8u1ebklc0</string>
+	<string>com.googleusercontent.apps.819053432548-po3dnicfafnrtber41s2db64qoe4d0ci</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAVxkb_e_V4A1d7ozyi5QyDMIM7cZT8vkk</string>
+	<string>AIzaSyD8PudpcejMzoa9tpBolWxCLDfckkMXV_M</string>
 	<key>GCM_SENDER_ID</key>
-	<string>655255217284</string>
+	<string>819053432548</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.flutter.epitech.instagram</string>
 	<key>PROJECT_ID</key>
-	<string>instagram-58710</string>
+	<string>flutter-instagram-f27bd</string>
 	<key>STORAGE_BUCKET</key>
-	<string>instagram-58710.appspot.com</string>
+	<string>flutter-instagram-f27bd.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,11 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:655255217284:ios:af74de0b9fdfd1e0c44ed1</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-        <key>NSAllowsLocalNetworking</key>
-        <true/>
-    </dict>
+	<string>1:819053432548:ios:27363e1a4c59c04d4a26f1</string>
 </dict>
 </plist>
