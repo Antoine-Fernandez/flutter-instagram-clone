@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram/resources/auth_methods.dart';
+import 'package:instagram/responsive/mobile_screen_layout.dart';
+import 'package:instagram/responsive/responsive_layout_dart.dart';
+import 'package:instagram/responsive/web_screen_layout.dart';
+import 'package:instagram/screens/login_screen.dart';
 import 'package:instagram/utils/colors.dart';
 import 'package:instagram/utils/utils.dart';
 import 'package:instagram/widget/text_field_input.dart';
@@ -57,10 +61,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _isLoading = false;
       });
     } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (BuildContext context) => const ResponsiveLayout(
+            mobileScreenLayout: MobileScreenLayout(),
+            webScreenLayout: WebScreenLayout(),
+          ),
+        ),
+      );
       setState(() {
         _isLoading = false;
       });
     }
+  }
+
+  void navigateToLogin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const LoginScreen(),
+      ),
+    );
   }
 
   @override
@@ -179,7 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: const Text("Already have an account ? "),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: navigateToLogin,
                     child: const Text(
                       "Sign in",
                       style: TextStyle(fontWeight: FontWeight.bold),

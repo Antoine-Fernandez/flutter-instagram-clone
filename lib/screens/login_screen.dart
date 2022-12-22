@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram/resources/auth_methods.dart';
+import 'package:instagram/screens/home_screen.dart';
+import 'package:instagram/screens/signup_screen.dart';
 import 'package:instagram/utils/colors.dart';
 import 'package:instagram/utils/utils.dart';
 import 'package:instagram/widget/text_field_input.dart';
@@ -33,14 +35,25 @@ class _LoginScreenState extends State<LoginScreen> {
       password: _passwordController.text,
     );
     if (res == "success") {
-      
+      await Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
     } else {
       showSnackBar(context, res);
       setState(() {
         _isLoading = false;
       });
     }
+  }
 
+  void navigateToSignup() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const SignUpScreen(),
+      ),
+    );
   }
 
   @override
@@ -82,23 +95,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 24,
               ),
               if (_isLoading == false)
-              InkWell(
-                onTap: logUser,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4),
+                InkWell(
+                  onTap: logUser,
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    decoration: const ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4),
+                        ),
                       ),
+                      color: blueColor,
                     ),
-                    color: blueColor,
+                    child: const Text("Log in"),
                   ),
-                  child: const Text("Log in"),
-                ),
-              ) else const CircularProgressIndicator(),
+                )
+              else
+                const CircularProgressIndicator(),
               const SizedBox(
                 height: 12,
               ),
@@ -114,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text("Don't have an account ? "),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: navigateToSignup,
                     child: const Text(
                       "Sign up",
                       style: TextStyle(fontWeight: FontWeight.bold),
