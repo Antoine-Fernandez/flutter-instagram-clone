@@ -1,6 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:instagram/resources/auth_methods.dart';
 import 'package:instagram/utils/colors.dart';
+import 'package:instagram/utils/utils.dart';
 import 'package:instagram/widget/text_field_input.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -15,6 +19,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  Uint8List? _img;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -25,6 +31,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _usernameController.dispose();
   }
 
+  void selectImage() async {
+    final Uint8List img = await pickImage(ImageSource.gallery);
+
+    setState(() {
+      _img = img;
+    });
+  }
+
+  void signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods().signUpUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: _bioController.text,
+      file: _img!,
+    );
+
+    if (res != "success") {
+      showSnackBar(context, res);
+      setState(() {
+        _isLoading = false;
+      });
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +71,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
                 flex: 2,
@@ -49,16 +86,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Stack(
                 children: [
-                  const CircleAvatar(
-                    radius: 64,
-                    backgroundImage: NetworkImage(
-                        "https://images.unsplash.com/photo-1664575600796-ffa828c5cb6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"),
-                  ),
+                  if (_img != null)
+                    CircleAvatar(
+                      radius: 64,
+                      backgroundImage: MemoryImage(_img!),
+                    )
+                  else
+                    const CircleAvatar(
+                      radius: 64,
+                      backgroundImage: NetworkImage(
+                          "https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg"),
+                    ),
                   Positioned(
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: selectImage,
                       icon: const Icon(Icons.add_a_photo),
                     ),
                   )
@@ -100,22 +143,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 24,
               ),
-              InkWell(
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4),
+              if (_isLoading == false)
+                InkWell(
+                  onTap: signUpUser,
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    decoration: const ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4),
+                        ),
                       ),
+                      color: blueColor,
                     ),
-                    color: blueColor,
+                    child: const Text("Sign Up"),
                   ),
-                  child: const Text("Sign Up"),
-                ),
-              ),
+                )
+              else
+                const CircularProgressIndicator(),
               const SizedBox(
                 height: 12,
               ),
@@ -128,12 +175,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: const Text("Don't have an account ? "),
+                    child: const Text("Already have an account ? "),
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: const Text(
-                      "Sign up",
+                      "Sign in",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

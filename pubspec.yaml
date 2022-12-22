@@ -37,6 +37,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.6
+  image_picker: ^0.8.6
 
 dev_dependencies:
   blackfoot_flutter_lint: ^1.0.6
