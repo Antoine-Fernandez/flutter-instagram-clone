@@ -31,9 +31,9 @@ class AuthMethods {
           "uid": createdUser.user!.uid,
           "name": username,
           "bio": bio,
-          "posts": List<dynamic>,
-          "followers": List<dynamic>,
-          "followings": List<dynamic>,
+          "posts": [],
+          "followers": [],
+          "followings": [],
           "photoUrl": photoUrl,
           "isAdmin": false,
         });
@@ -47,6 +47,28 @@ class AuthMethods {
           "photoUrl": photoUrl,
         });
         res = "success";
+      }
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  Future<String> logInUser({
+    required String email,
+    required String password,
+  }) async {
+    String res = "Some error occured";
+
+    try {
+      if (email.isNotEmpty || password.isNotEmpty) {
+        await _auth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        res = "success";
+      } else {
+        res = "Please enter all the fields";
       }
     } catch (err) {
       res = err.toString();

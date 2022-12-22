@@ -43,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     setState(() {
       _isLoading = true;
     });
-    String res = await AuthMethods().signUpUser(
+    final String res = await AuthMethods().signUpUser(
       email: _emailController.text,
       password: _passwordController.text,
       username: _usernameController.text,
@@ -95,7 +95,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const CircleAvatar(
                       radius: 64,
                       backgroundImage: NetworkImage(
-                          "https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg"),
+                        "https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg",
+                      ),
                     ),
                   Positioned(
                     bottom: -10,
