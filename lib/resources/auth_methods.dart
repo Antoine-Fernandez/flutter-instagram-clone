@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:instagram/resources/storage_methods.dart';
+import 'package:instagram/models/user.dart' as model;
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -27,25 +28,21 @@ class AuthMethods {
 
         // ------------------ CREATE COLLECTION ------------------
 
-        await _firestore.collection("users").doc(createdUser.user!.uid).set({
-          "uid": createdUser.user!.uid,
-          "name": username,
-          "bio": bio,
-          "posts": [],
-          "followers": [],
-          "followings": [],
-          "photoUrl": photoUrl,
-          "isAdmin": false,
-        });
+        final model.User user = model.User(
+          name: username,
+          email: email,
+          uid: createdUser.user!.uid,
+          bio: bio,
+          posts: [],
+          followers: [],
+          following: [],
+          photoUrl: photoUrl,
+          isAdmin: false,
+        );
 
-        await _firestore
-            .collection("public_users")
-            .doc(createdUser.user!.uid)
-            .set({
-          "uid": createdUser.user!.uid,
-          "name": username,
-          "photoUrl": photoUrl,
-        });
+        await _firestore.collection("users").doc(createdUser.user!.uid).set(
+              user.toJson(),
+            );
         res = "success";
       }
     } catch (err) {
