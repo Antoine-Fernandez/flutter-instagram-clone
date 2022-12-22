@@ -1,5 +1,3 @@
-import 'package:image_picker/image_picker.dart';
-
 class User {
   const User({
     required this.name,
