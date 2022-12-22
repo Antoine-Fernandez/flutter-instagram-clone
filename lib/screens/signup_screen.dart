@@ -61,6 +61,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _isLoading = false;
       });
     } else {
+      setState(() {
+        _isLoading = false;
+      });
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (BuildContext context) => const ResponsiveLayout(
@@ -69,9 +72,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       );
-      setState(() {
-        _isLoading = false;
-      });
     }
   }
 
