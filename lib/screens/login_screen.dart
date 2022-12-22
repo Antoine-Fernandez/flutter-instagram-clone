@@ -56,6 +56,48 @@ class _LoginScreenState extends State<LoginScreen> {
                 hintText: "Enter your password",
                 textInputType: TextInputType.text,
                 isPassword: true,
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              InkWell(
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4),
+                      ),
+                    ),
+                    color: blueColor,
+                  ),
+                  child: const Text("Log in"),
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Flexible(
+                flex: 2,
+                child: Container(),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: const Text("Don't have an account ? "),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Text(
+                      "Sign up",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               )
             ],
           ),
