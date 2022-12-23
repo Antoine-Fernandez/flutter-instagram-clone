@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:instagram/models/user.dart';
+import 'package:instagram/providers/user_provider.dart';
 import 'package:instagram/utils/colors.dart';
 import 'package:instagram/utils/utils.dart';
+import 'package:provider/provider.dart';
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({super.key});
@@ -13,6 +16,7 @@ class AddPostScreen extends StatefulWidget {
 
 class _AddPostScreenState extends State<AddPostScreen> {
   Uint8List? _file;
+  final TextEditingController _descripionController = TextEditingController();
 
   void _selectImage(BuildContext context) async {
     return showDialog(
@@ -20,13 +24,13 @@ class _AddPostScreenState extends State<AddPostScreen> {
         builder: (BuildContext context) {
           return SimpleDialog(
             title: const Text("Create a post"),
-            children: [
+            children: <Widget>[
               SimpleDialogOption(
                 padding: const EdgeInsets.all(20),
                 child: const Text("Take a photo"),
                 onPressed: () async {
                   Navigator.of(context).pop();
-                  Uint8List file = await pickImage(ImageSource.camera);
+                  final Uint8List file = await pickImage(ImageSource.camera);
                   setState(() {
                     _file = file;
                   });
@@ -37,12 +41,19 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 child: const Text("Choose from gallery"),
                 onPressed: () async {
                   Navigator.of(context).pop();
-                  Uint8List file = await pickImage(ImageSource.gallery);
+                  final Uint8List file = await pickImage(ImageSource.gallery);
                   setState(() {
                     _file = file;
                   });
                 },
-              )
+              ),
+              SimpleDialogOption(
+                padding: const EdgeInsets.all(20),
+                child: const Text("Cancel"),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                },
+              ),
             ],
           );
         });
@@ -50,6 +61,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final User user = Provider.of<UserProvider>(context).getUser;
+
     return _file == null
         ? Center(
             child: IconButton(
@@ -81,20 +94,19 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ],
             ),
             body: Column(
-              children: [
+              children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        'https://images.unsplash.com/photo-1664575196044-195f135295df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-                      ),
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(user.photoUrl),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
-                      child: const TextField(
-                        decoration: InputDecoration(
+                      child: TextField(
+                        controller: _descripionController,
+                        decoration: const InputDecoration(
                           hintText: "Write a caption ...",
                           border: InputBorder.none,
                         ),
@@ -106,11 +118,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       child: AspectRatio(
                         aspectRatio: 487 / 451,
                         child: Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(
-                                "https://images.unsplash.com/photo-1664575196044-195f135295df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-                              ),
+                              image: MemoryImage(_file!),
                               fit: BoxFit.fill,
                               alignment: FractionalOffset.topCenter,
                             ),
