@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:instagram/utils/colors.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -36,25 +37,25 @@ class _SearchScreenState extends State<SearchScreen> {
           },
         ),
       ),
-      body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        future: FirebaseFirestore.instance
-            .collection('users')
-            .where(
-              "name",
-              isGreaterThanOrEqualTo: searchController.text,
-            )
-            .get(),
-        builder: (
-          BuildContext context,
-          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
-        ) {
-          if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return isShowUsers
-              ? ListView.builder(
+      body: isShowUsers
+          ? FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+              future: FirebaseFirestore.instance
+                  .collection('users')
+                  .where(
+                    "name",
+                    isGreaterThanOrEqualTo: searchController.text,
+                  )
+                  .get(),
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+              ) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       leading: CircleAvatar(
@@ -68,10 +69,28 @@ class _SearchScreenState extends State<SearchScreen> {
                     );
                   },
                   itemCount: (snapshot.data! as dynamic).docs.length,
-                )
-              : const Text("post");
-        },
-      ),
+                );
+              },
+            )
+          : FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+              future: FirebaseFirestore.instance.collection('posts').get(),
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+              ) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return MasonryGridView.count(
+                  crossAxisCount: 3,
+                  itemBuilder: (BuildContext context, int index) =>
+                      Image.network(
+                    (snapshot.data as dynamic).docs[index]['postUrl'],
+                  ),
+                  itemCount: (snapshot.data as dynamic).docs.length,
+                );
+              },
+            ),
     );
   }
 }
