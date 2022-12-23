@@ -18,9 +18,9 @@ class User {
   final String uid;
   final String bio;
   final String photoUrl;
-  final List followers;
-  final List following;
-  final List posts;
+  final List<dynamic> followers;
+  final List<dynamic> following;
+  final List<dynamic> posts;
   final bool isAdmin;
 
   Map<String, dynamic> toJson() => {
