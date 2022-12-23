@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram/resources/auth_methods.dart';
-import 'package:instagram/screens/home_screen.dart';
+import 'package:instagram/screens/feed_screen.dart';
 import 'package:instagram/screens/signup_screen.dart';
 import 'package:instagram/utils/colors.dart';
 import 'package:instagram/utils/utils.dart';
@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       await Navigator.of(context).pushReplacement(
         MaterialPageRoute<dynamic>(
-          builder: (BuildContext context) => const HomeScreen(),
+          builder: (BuildContext context) => const FeedScreen(),
         ),
       );
     } else {
