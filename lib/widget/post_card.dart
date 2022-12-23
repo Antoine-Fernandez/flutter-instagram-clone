@@ -92,7 +92,10 @@ class _PostCardState extends State<PostCard> {
           GestureDetector(
             onDoubleTap: () async {
               await FirestoreMethods().likePost(
-                  widget.snap['postId'], user.uid, widget.snap["likes"]);
+                widget.snap['postId'],
+                user.uid,
+                widget.snap["likes"],
+              );
               setState(() {
                 isLikeAnimating = true;
               });
@@ -138,7 +141,10 @@ class _PostCardState extends State<PostCard> {
                 child: IconButton(
                   onPressed: () async {
                     await FirestoreMethods().likePost(
-                        widget.snap['postId'], user.uid, widget.snap["likes"]);
+                      widget.snap['postId'],
+                      user.uid,
+                      widget.snap["likes"],
+                    );
                     setState(() {
                       isLikeAnimating = true;
                     });
