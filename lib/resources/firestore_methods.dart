@@ -38,4 +38,26 @@ class FirestoreMethods {
     }
     return res;
   }
+
+  Future<void> likePost(String postId, String uid, List<dynamic> likes) async {
+    try {
+      if (likes.contains(uid)) {
+        await _firestore
+            .collection("posts")
+            .doc(postId)
+            .update(<String, dynamic>{
+          "likes": FieldValue.arrayRemove(<String>[uid]),
+        });
+      } else {
+        await _firestore
+            .collection("posts")
+            .doc(postId)
+            .update(<String, dynamic>{
+          "likes": FieldValue.arrayUnion(<String>[uid]),
+        });
+      }
+    } catch (e) {
+      return;
+    }
+  }
 }
