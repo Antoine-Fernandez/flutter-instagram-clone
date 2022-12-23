@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram/resources/auth_methods.dart';
-import 'package:instagram/screens/home_screen.dart';
+import 'package:instagram/screens/feed_screen.dart';
 import 'package:instagram/screens/signup_screen.dart';
 import 'package:instagram/utils/colors.dart';
 import 'package:instagram/utils/utils.dart';
@@ -35,12 +35,14 @@ class _LoginScreenState extends State<LoginScreen> {
       password: _passwordController.text,
     );
     if (res == "success") {
+      if (!mounted) return;
       await Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+        MaterialPageRoute<dynamic>(
+          builder: (BuildContext context) => const FeedScreen(),
         ),
       );
     } else {
+      if (!mounted) return;
       showSnackBar(context, res);
       setState(() {
         _isLoading = false;
@@ -50,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void navigateToSignup() {
     Navigator.of(context).push(
-      MaterialPageRoute(
+      MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => const SignUpScreen(),
       ),
     );
@@ -64,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
-            children: [
+            children: <Widget>[
               Flexible(
                 flex: 2,
                 child: Container(),
@@ -123,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text("Don't have an account ? "),
