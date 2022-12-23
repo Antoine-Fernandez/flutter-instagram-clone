@@ -33,6 +33,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         profImage,
       );
       if (res == "success") {
+        if (!mounted) return;
         showSnackBar(context, "Posted !");
         clearImage();
       }
@@ -46,43 +47,44 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   void _selectImage(BuildContext context) async {
     return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            title: const Text("Create a post"),
-            children: <Widget>[
-              SimpleDialogOption(
-                padding: const EdgeInsets.all(20),
-                child: const Text("Take a photo"),
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  final Uint8List file = await pickImage(ImageSource.camera);
-                  setState(() {
-                    _file = file;
-                  });
-                },
-              ),
-              SimpleDialogOption(
-                padding: const EdgeInsets.all(20),
-                child: const Text("Choose from gallery"),
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  final Uint8List file = await pickImage(ImageSource.gallery);
-                  setState(() {
-                    _file = file;
-                  });
-                },
-              ),
-              SimpleDialogOption(
-                padding: const EdgeInsets.all(20),
-                child: const Text("Cancel"),
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text("Create a post"),
+          children: <Widget>[
+            SimpleDialogOption(
+              padding: const EdgeInsets.all(20),
+              child: const Text("Take a photo"),
+              onPressed: () async {
+                Navigator.of(context).pop();
+                final Uint8List file = await pickImage(ImageSource.camera);
+                setState(() {
+                  _file = file;
+                });
+              },
+            ),
+            SimpleDialogOption(
+              padding: const EdgeInsets.all(20),
+              child: const Text("Choose from gallery"),
+              onPressed: () async {
+                Navigator.of(context).pop();
+                final Uint8List file = await pickImage(ImageSource.gallery);
+                setState(() {
+                  _file = file;
+                });
+              },
+            ),
+            SimpleDialogOption(
+              padding: const EdgeInsets.all(20),
+              child: const Text("Cancel"),
+              onPressed: () async {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void clearImage() {
@@ -117,7 +119,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ),
               title: const Text("Post"),
               centerTitle: false,
-              actions: [
+              actions: <Widget>[
                 TextButton(
                   onPressed: () =>
                       postImage(user.uid, user.name, user.photoUrl),
@@ -138,11 +140,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   const LinearProgressIndicator()
                 else
                   const Divider(),
-                  const Padding(padding: EdgeInsets.only(top: 0)),
+                const Padding(padding: EdgeInsets.zero),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     CircleAvatar(
                       backgroundImage: NetworkImage(user.photoUrl),
                     ),

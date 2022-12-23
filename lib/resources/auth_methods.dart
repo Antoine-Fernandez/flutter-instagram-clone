@@ -11,9 +11,9 @@ class AuthMethods {
   Future<model.User> getUserDetails() async {
     final User currentUser = _auth.currentUser!;
 
-    DocumentSnapshot snap = await _firestore.collection("users").doc(currentUser.uid).get();
-      print(snap.data());
-      print(currentUser.uid);
+    final DocumentSnapshot<Object> snap =
+        await _firestore.collection("users").doc(currentUser.uid).get();
+
     return model.User.fromSnap(snap);
   }
 
@@ -42,9 +42,9 @@ class AuthMethods {
           email: email,
           uid: createdUser.user!.uid,
           bio: bio,
-          posts: [],
-          followers: [],
-          following: [],
+          posts: <dynamic>[],
+          followers: <dynamic>[],
+          following: <dynamic>[],
           photoUrl: photoUrl,
           isAdmin: false,
         );

@@ -21,7 +21,7 @@ class Post {
   final String profImage;
   final List<dynamic> likes;
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         "username": username,
         "description": description,
         "uid": uid,
@@ -32,7 +32,7 @@ class Post {
         "likes": likes,
       };
 
-  static Post fromSnap(DocumentSnapshot snap) {
+  static Post fromSnap(DocumentSnapshot<Object?> snap) {
     final Map<String, dynamic> snapshot = snap.data() as Map<String, dynamic>;
 
     return Post(

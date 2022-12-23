@@ -22,9 +22,9 @@ class _FeedScreenState extends State<FeedScreen> {
           color: primaryColor,
           height: 32,
         ),
-        actions: [
+        actions: <Widget>[
           IconButton(
-            onPressed: (() {}),
+            onPressed: () {},
             icon: const Icon(
               Icons.messenger_outline,
             ),

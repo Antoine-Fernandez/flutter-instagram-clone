@@ -56,6 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
 
     if (res != "success") {
+      if (!mounted) return;
       showSnackBar(context, res);
       setState(() {
         _isLoading = false;
@@ -64,8 +65,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       setState(() {
         _isLoading = false;
       });
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
+      if (!mounted) return;
+      await Navigator.of(context).pushReplacement(
+        MaterialPageRoute<dynamic>(
           builder: (BuildContext context) => const ResponsiveLayout(
             mobileScreenLayout: MobileScreenLayout(),
             webScreenLayout: WebScreenLayout(),
@@ -77,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void navigateToLogin() {
     Navigator.of(context).push(
-      MaterialPageRoute(
+      MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => const LoginScreen(),
       ),
     );
@@ -91,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
-            children: [
+            children: <Widget>[
               Flexible(
                 flex: 2,
                 child: Container(),
@@ -105,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 64,
               ),
               Stack(
-                children: [
+                children: <Widget>[
                   if (_img != null)
                     CircleAvatar(
                       radius: 64,
@@ -193,7 +195,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text("Already have an account ? "),

@@ -23,7 +23,7 @@ class User {
   final List<dynamic> posts;
   final bool isAdmin;
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         "name": name,
         "email": email,
         "uid": uid,
@@ -35,7 +35,7 @@ class User {
         "isAdmin": isAdmin,
       };
 
-  static User fromSnap(DocumentSnapshot snap) {
+  static User fromSnap(DocumentSnapshot<Object> snap) {
     final Map<String, dynamic> snapshot = snap.data() as Map<String, dynamic>;
 
     return User(
