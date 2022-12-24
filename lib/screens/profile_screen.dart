@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram/resources/auth_methods.dart';
 import 'package:instagram/resources/firestore_methods.dart';
+import 'package:instagram/screens/login_screen.dart';
 import 'package:instagram/utils/colors.dart';
 import 'package:instagram/utils/utils.dart';
 import 'package:instagram/widget/follow_button.dart';
@@ -110,11 +112,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     if (FirebaseAuth
                                             .instance.currentUser!.uid ==
                                         widget.uid)
-                                      const FollowButton(
-                                        text: 'Edit profil',
+                                      FollowButton(
+                                        text: 'Sign Out',
                                         backgroundColor: mobileBackgroundColor,
                                         textColor: primaryColor,
                                         borderColor: Colors.grey,
+                                        function: () async {
+                                          await AuthMethods().signOut();
+                                          if (!mounted) return;
+                                          await Navigator.of(context)
+                                              .pushReplacement(
+                                            MaterialPageRoute<dynamic>(
+                                              builder: (BuildContext context) =>
+                                                  const LoginScreen(),
+                                            ),
+                                          );
+                                        },
                                       )
                                     else
                                       isFollowing
