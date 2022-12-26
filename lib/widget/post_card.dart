@@ -87,45 +87,55 @@ class _PostCardState extends State<PostCard> {
                       ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) => Dialog(
-                          child: ListView(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            shrinkWrap: true,
-                            children: <String>[
-                              'Delete',
-                            ]
-                                .map(
-                                  (String e) => InkWell(
-                                    onTap: () async {
-                                      await FirestoreMethods().deletePost(
-                                        widget.snap['postId'],
-                                      );
-                                      if (!mounted) return;
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 12,
-                                        horizontal: 16,
-                                      ),
-                                      child: Text(e),
+                  Container(
+                    child: user.isAdmin || user.name == widget.snap["username"]
+                        ? IconButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) => Dialog(
+                                  child: ListView(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 16,
                                     ),
+                                    shrinkWrap: true,
+                                    children: <String>[
+                                      'Delete',
+                                    ]
+                                        .map(
+                                          (String e) => InkWell(
+                                            onTap: () async {
+                                              await FirestoreMethods()
+                                                  .deletePost(
+                                                widget.snap['postId'],
+                                              );
+                                              if (!mounted) return;
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                vertical: 12,
+                                                horizontal: 16,
+                                              ),
+                                              child: Text(e),
+                                            ),
+                                          ),
+                                        )
+                                        .toList(),
                                   ),
-                                )
-                                .toList(),
-                          ),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.more_vert),
-                  )
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.more_vert),
+                            color: user.isAdmin ? Colors.red : Colors.white,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
                 ],
               ),
             ),
+
             // ------------- IMG SECTION -------------
             GestureDetector(
               onDoubleTap: () async {
