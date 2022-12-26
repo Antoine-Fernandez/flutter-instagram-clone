@@ -43,7 +43,7 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mobileBackgroundColor,
+        backgroundColor: webBackgroundColor,
         centerTitle: false,
         title: SvgPicture.asset(
           "assets/ic_instagram.svg",
