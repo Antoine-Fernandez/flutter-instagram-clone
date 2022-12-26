@@ -55,7 +55,8 @@ class _PostCardState extends State<PostCard> {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-              color: width > web ? secondaryColor : mobileBackgroundColor),
+            color: width > web ? secondaryColor : mobileBackgroundColor,
+          ),
         ),
         child: Column(
           children: <Widget>[
@@ -267,7 +268,9 @@ class _PostCardState extends State<PostCard> {
                       child: Text(
                         "View all $commentLen commments",
                         style: const TextStyle(
-                            fontSize: 16, color: secondaryColor),
+                          fontSize: 16,
+                          color: secondaryColor,
+                        ),
                       ),
                     ),
                   ),
