@@ -91,6 +91,7 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         onPageChanged: onPageChanged,
+        controller: pageController,
         children: screens,
       ),
     );
