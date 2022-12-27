@@ -110,17 +110,17 @@ You can alsow find the main file and the firebase options.
 -   [intl](https://pub.dev/packages/intl) to display date on a good format
 -   [provider](https://pub.dev/packages/provider) global state management
 -   [uuid](https://pub.dev/packages/uuid) to generate unique ID
-
+-   [firebase_crashlytics](https://pub.dev/packages/firebase_crashlytics) to get crash log
 
 ## Features
 
-- [x]  Login / Signup
-- [x]  add a post with description
-- [x]  Feed of post
-- [x]  Comment a post
-- [x]  like a post (animated like)
-- [x]  Search users
-- [x]  Follow / unfollow users
-- [x]  profil
-- [x]  Delete my own post
-- [x]  Delete post (only for admin)
+-   [x] Login / Signup
+-   [x] add a post with description
+-   [x] Feed of post
+-   [x] Comment a post
+-   [x] like a post (animated like)
+-   [x] Search users
+-   [x] Follow / unfollow users
+-   [x] profil
+-   [x] Delete my own post
+-   [x] Delete post (only for admin)
