@@ -19,3 +19,16 @@ This project it's a school project. It's an limited clone of one of the famous s
 - Delete my own post
 - Delete post (only for admin)
 
+
+## Dependencies
+- [cloud_firestore](https://pub.dev/packages/cloud_firestore) to handle firestore interaction
+- [cupertino_icons](https://pub.dev/packages/cupertino_icons) for navigation icon
+- [firebase_auth](https://pub.dev/packages/firebase_auth) to handle user authentification
+- [firebase_core](https://pub.dev/packages/firebase_core) to use firebase app features
+- [firebase_storage](https://pub.dev/packages/firebase_storage) to store pictures
+- [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view) to display pictures in user search
+- [flutter_svg](https://pub.dev/packages/flutter_svg) to render svg
+- [image_picker](https://pub.dev/packages/image_picker) to pick image from the current device
+- [intl](https://pub.dev/packages/intl) to display date on a good format
+- [provider](https://pub.dev/packages/provider) global state management
+- [uuid](https://pub.dev/packages/uuid) to generate unique ID
