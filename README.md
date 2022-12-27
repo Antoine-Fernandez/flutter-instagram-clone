@@ -6,16 +6,16 @@ This project it's a school project. It's an limited clone of one of the famous s
 
 ## Features
 
--   Login / Signup
--   add a post with description
--   Feed of post
--   Comment a post
--   like a post (animated like)
--   Search users
--   Follow / unfollow users
--   profil
--   Delete my own post
--   Delete post (only for admin)
+- [x]  Login / Signup
+- [x]  add a post with description
+- [x]  Feed of post
+- [x]  Comment a post
+- [x]  like a post (animated like)
+- [x]  Search users
+- [x]  Follow / unfollow users
+- [x]  profil
+- [x]  Delete my own post
+- [x]  Delete post (only for admin)
 
 ## Dependencies
 
@@ -64,3 +64,62 @@ flutter run
 ```
 flutter run -d chrome --web-renderer html
 ```
+
+## Architecture
+
+Here is the core folder structure of the project.
+
+```
+flutter-app/
+|- android
+|- assets
+|- build
+|- ios
+|- lib
+|- linux
+|- macos
+|- test
+|- web
+|- windows
+```
+
+Here is the lib structure that I created.
+
+```
+flutter-app/
+|- models
+|- providers
+|- resources
+|- responsive
+|- screns
+|- utils
+|- widget
+|- firebase_options.dart
+|- main.dart
+```
+
+**Models :**
+Folder which contains my data models. You can find the user and post model.
+
+**Providers :**
+Folder which contains my global state management class.
+
+**Resources :**
+Folder which contains my api call to interact with firebase.
+
+**Responsive :**
+Folder that contains my layout.
+
+**Screens :**
+Folder that contains all the screens of the app.
+
+**Utils :**
+Folder that contains useful functions and configuration. You can find my color configuration, my list of screen to navigate, and some utils like showSnackBar.
+
+**Widget :**
+Folder that contains all the widgets of the app like post card, comment card.
+
+**Screens :**
+Folder that contains all the screens of the app.
+
+You can alsow find the main file and the firebase options.
