@@ -16,7 +16,7 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "New iOS build for Counter Demo app"
+  desc "Instagram clone :)"
     lane :ios_beta_app do
         build_app(
             scheme: "Runner",
@@ -26,8 +26,8 @@ platform :ios do
         )
         firebase_app_distribution(
             app: "1:819053432548:ios:27363e1a4c59c04d4a26f1",
-            testers: "antoinefernandez.travail@gmail.com, charles3100@hotmail.fr",
-            release_notes: "Initial test version of the app",
+            testers: "antoinefernandez.travail@gmail.com",
+            release_notes: "Instagram Clone V1 !",
             firebase_cli_path: "/usr/local/bin/firebase",
             ipa_path: "./build/Runner/Runner.ipa"
         )
