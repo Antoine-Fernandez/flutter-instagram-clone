@@ -13,12 +13,12 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-## iOS
+## Android
 
-### ios ios_beta_app
+### android android_beta_app
 
 ```sh
-[bundle exec] fastlane ios ios_beta_app
+[bundle exec] fastlane android android_beta_app
 ```
 
 Instagram clone :)
